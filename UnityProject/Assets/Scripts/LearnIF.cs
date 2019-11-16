@@ -15,47 +15,47 @@ public class LearnIF : MonoBehaviour
         // () 裡面的布林值為 true 才會執行 if { }
         if (true)
         {
-            print("打開開關~~~");
+            print ("打開開關~~~");
         
         }
 
         // () 裡面的布林值為 false 才會執行 else {}
         else
         {
-            print("關閉開關~");
+            print ("關閉開關~");
         }
 
         if (prop == "紅色藥水")
         {
-            print("補血");
+            print ("補血");
         }
 else if (prop == "藍色藥水")
         {
-            print("補魔力");
+            print ("補魔力");
         }
 
         else if(prop == "黃色藥水")
         {
-            print("補體力");
+            print ("補體力");
                 }
         else
         {
-            print("沒發生任何事~");
+            print ("沒發生任何事~");
         }  
         #endregion
    
   if  (hp>=70)
 	{
-           print("安全") ;
+           print ("安全") ;
 	}
 
         else if (hp >=50)
         {
-            print("警告!");
+            print ("警告!");
         }
 else
 {
-print("快死了!!!");
+print ("快死了!!!");
 }
   
      }

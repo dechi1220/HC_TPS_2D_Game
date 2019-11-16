@@ -1008,7 +1008,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 987243383}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c91ef4675c589524382d64f2069851f0, type: 3}
   m_Name: 
@@ -1016,6 +1016,7 @@ MonoBehaviour:
   transformA: {fileID: 1558720830}
   transformB: {fileID: 2131453244}
   cam: {fileID: 135505746}
+  BGM: {fileID: 156282245}
 --- !u!1 &1002227284
 GameObject:
   m_ObjectHideFlags: 0
@@ -1047,6 +1048,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   scoreHeight: 0
+  pipe: {fileID: 8310143426714267172, guid: ec7539058d9c5cc408a111574e4f7fb2, type: 3}
 --- !u!4 &1002227288
 Transform:
   m_ObjectHideFlags: 0

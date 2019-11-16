@@ -31,9 +31,9 @@ public class LearnAPI : MonoBehaviour
 
         cam.depth = 10;
         print("攝影機深度:" + cam.depth);
-
-
-}
+        // 方法依定要+小括號()
+        BGM.Stop( );
+            }
     private void Update()
     {
         //非靜態成員 - 方法
