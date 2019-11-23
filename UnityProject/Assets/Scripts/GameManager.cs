@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI; //引用 介面 API
 
 public class GameManager : MonoBehaviour
 {
@@ -11,8 +12,17 @@ public class GameManager : MonoBehaviour
 
     [Header("水管")]
     // GameObject 可以存放場景上的遊戲物件與專案內的預製物(prefab)
-
     public GameObject pipe;
+
+    [Header("遊戲結算畫面")]
+    public GameObject goFinal;
+    [Header("分數介面")]
+     public Text textScore;
+    // static 不會顯示在Unity裡的屬性 Inspector面板上，就算有public也不會~
+    public static bool gameOver;
+
+  
+
 
     // 修飾詞全限:
     // private  其他類別無法使用
@@ -23,6 +33,11 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void AddScore()
     {
+        print("++~!");
+        score++;
+        //分數介面.文字內容 = 分數.轉為字串()
+        // ToString() 可以將任何類型轉為字串
+        textScore.text = score.ToString();
 
     }
 
@@ -46,7 +61,7 @@ public class GameManager : MonoBehaviour
         //生成(物件，座標，角度)
        float y = Random.Range(-1f, 1.2f);
         //區域欄位(不需要修飾詞public)
-        Vector3 pos = new Vector3(0, y, 0);
+        Vector3 pos = new Vector3(10, y, 0);
 
 
 
@@ -59,7 +74,9 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void GameOver()
     {
-
+        goFinal.SetActive(true); //顯示結算畫面
+        gameOver = true; // 遊戲結束 = 是
+        CancelInvoke("SpawnPipe");  //停止 InvokeReapeating、Invoke的方法
 
 
    }
