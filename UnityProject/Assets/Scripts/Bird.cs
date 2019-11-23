@@ -21,6 +21,13 @@ public class Bird : MonoBehaviour
     /// </summary>
     private void Jump( )
     {
+        // 如果 死亡 跳出此程式區塊 
+        if (dead == true) 
+        {
+            return; // return= 跳過大括號裡寫的，不要執行
+        }
+        //簡寫: if(dead) retrun;
+
         //如果 玩家 按下 左鍵
         // 輸入. 按下左鍵(案件列舉.滑鼠左鍵)(手機觸控)
         if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -45,9 +52,11 @@ public class Bird : MonoBehaviour
     /// </summary>
     private void Dead()
     {
-
+        print("死ㄌ!!!!!");
+        dead = true;
     }
     
+
     //固定幀數 0.002 一幀：要控制物理請寫在此事件內
     private void FixedUpdate()
 
@@ -56,4 +65,17 @@ public class Bird : MonoBehaviour
 
     }
 
+    
+    // 事件:碰撞開始 - 碰撞開始實執行一次 (Collision2D collision)(碰撞類別 名稱) 存放碰到物件的資訊
+    private void OnCollisionEnter2D(Collision2D hit)
+    {
+        // 碰到物件.遊戲物件.名稱
+        print(hit.gameObject.name);   
+        
+        if(hit.gameObject.name == "地板")
+        {
+            Dead();
+        }
+
+    }
 }
