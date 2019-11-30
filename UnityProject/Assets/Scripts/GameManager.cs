@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI; //引用 介面 API
+using UnityEngine.SceneManagement; //引用  場景管理API
 
 public class GameManager : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class GameManager : MonoBehaviour
     public GameObject goFinal;
     [Header("分數介面")]
      public Text textScore;
+    public Text textBest;
+
     // static 不會顯示在Unity裡的屬性 Inspector面板上，就算有public也不會~
     public static bool gameOver;
 
@@ -39,14 +42,21 @@ public class GameManager : MonoBehaviour
         // ToString() 可以將任何類型轉為字串
         textScore.text = score.ToString();
 
+        //呼叫最佳分數判定
+        HeightScore();
     }
 
     /// <summary>
     /// 定義最高分數判定
     /// </summary>
-    private void BestScore()
+    private void HeightScore()
     {
-
+        // 如果 目前分數 > 最佳分數
+        if ( score > PlayerPrefs.GetInt("最佳分數") )
+        {
+            //玩家資料.設定整數("最佳分數"，目前分數)
+            PlayerPrefs.SetInt("最佳分數", score);
+        }
     }
 
     /// <summary>
@@ -80,9 +90,43 @@ public class GameManager : MonoBehaviour
 
 
    }
+
+
+    // 要給UI按鈕呼叫的方法必須是public 
+    /// <summary>
+    /// 重新遊戲
+    /// </summary>
+    public void Replay ()
+    {
+       // Application.LoadLevel("遊戲場景");  //應用程式.載入場景("場景名稱") 舊版ㄉAPI!!
+        SceneManager.LoadScene("遊戲場景"); //場景管理器.載入場景("場景名稱") ; 新版API 記得在最上面引用場景API~
+
+    }
+
+    /// <summary>
+    /// 離開遊戲
+    /// </summary>
+    public void Quit()
+    {
+        Application.Quit(); //使用 應用程式 離開( );
+
+    }
+
+
+    //遊戲開始與載入場景會執行一次
     private void Start()
     {
+        //螢幕.設定解析度(寬,高,是否全螢幕)
+        Screen.SetResolution(450, 800, false);
+
+        //靜態成員在載入場景都不會還原
+        gameOver = false;
+
         // 重複調用("方法名稱",開始時間,間隔時間)
         InvokeRepeating("SpawnPipe", 0, 1.5f);
+
+        textBest.text = PlayerPrefs.GetInt("最佳分數").ToString( ) ;
+
+
     }
 }

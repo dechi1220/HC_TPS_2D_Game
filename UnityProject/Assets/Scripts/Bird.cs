@@ -41,7 +41,7 @@ public class Bird : MonoBehaviour
             aud.PlayOneShot(soundJump, 1.5f);      //喇叭.播放一次音效(音效，音量)
 
             r2d.Sleep();                                                      //小雞剛體.睡著( ) - 重設剛體所有資訊
-            r2d.gravityScale = 2;                                   //小雞剛體.重力 = 1;   //小雞 往上跳
+            r2d.gravityScale = 1.5f;                                   //小雞剛體.重力 = 1;   //小雞 往上跳
             r2d.AddForce(new Vector2(0, jump));  //小雞剛體.增加推力(二為向量(左右，上下));
 
             goScore.SetActive(true);                          // 分數顯示
@@ -104,7 +104,9 @@ public class Bird : MonoBehaviour
     //事件 : 觸發離開 - 物件離開觸發區域執行一次
     private void OnTriggerExit2D(Collider2D hit)
     {
-        if (hit.name == "加分")
+        // dead ==true 簡寫 dead
+        // dead != true 簡寫 !dead
+        if (hit.name == "加分" && !dead)
         {
             gm.AddScore();
             aud.PlayOneShot(sounfAdd,1);
